@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes/route");
 const dbLink = process.env.URI;
+// setting strictquery to false to use regex
 mongoose.set("strictQuery", false);
 mongoose.connect(dbLink);
 const db = mongoose.connection;
