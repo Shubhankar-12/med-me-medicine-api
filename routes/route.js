@@ -5,16 +5,18 @@ const Medicine = require("../model/model");
 module.exports = router;
 
 //Get all medicines
-router.get("/", (req, res) => {
+router.get("/medicines", (req, res) => {
   Medicine.find({}, (err, meds) => {
     if (err) console.log(err);
     else res.json(meds);
   });
 });
 
-//Get by ID Method
-router.get("/:name", (req, res) => {
-  Medicine.findOne({ med_name: req.params.name }, (err, foundMed) => {
+//Get specific medicines by name
+router.get("/medicine", (req, res) => {
+  const name = req.query.name;
+  // res.send(name);
+  Medicine.findOne({ med_name: name }, (err, foundMed) => {
     if (err) console.log(err);
     res.json(foundMed);
   });
