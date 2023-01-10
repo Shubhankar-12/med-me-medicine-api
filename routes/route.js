@@ -15,9 +15,11 @@ router.get("/medicines", (req, res) => {
 //Get specific medicines by name
 router.get("/medicine", (req, res) => {
   const name = req.query.name;
-  // res.send(name);
-  Medicine.findOne({ med_name: name }, (err, foundMed) => {
-    if (err) console.log(err);
-    res.json(foundMed);
-  });
+  Medicine.find(
+    { med_name: { $regex: name, $options: "i" } },
+    (err, foundMed) => {
+      if (err) console.log(err);
+      res.json(foundMed);
+    }
+  );
 });
