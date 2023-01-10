@@ -14,8 +14,11 @@ router.get("/", (req, res) => {
 
 //Get by ID Method
 router.get("/:name", (req, res) => {
-  Medicine.findOne({ med_name: req.params.name }, (err, foundMed) => {
-    if (err) console.log(err);
-    res.json(foundMed);
-  });
+  Medicine.findOne(
+    { med_name: { regex: /req.params.name/, $options: "i" } },
+    (err, foundMed) => {
+      if (err) console.log(err);
+      res.json(foundMed);
+    }
+  );
 });
