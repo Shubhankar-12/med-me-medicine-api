@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// medicines schema
 const medicineSchema = new Schema(
   {
     "web-scraper-order": String,
