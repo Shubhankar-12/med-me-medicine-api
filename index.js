@@ -11,6 +11,7 @@ mongoose.set("strictQuery", false);
 
 // connection database
 mongoose.connect(dbLink);
+
 const db = mongoose.connection;
 db.on("error", (error) => {
   console.log(error);
@@ -23,4 +24,6 @@ db.once("connected", () => {
 app.use(express.json());
 app.use("/api", routes);
 
-app.listen(3000, () => console.log("API listening on port 3000"));
+const port=process.env.PORT || 3000;
+
+app.listen(port, () => console.log("API started listening"));
